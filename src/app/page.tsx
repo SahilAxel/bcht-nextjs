@@ -14,7 +14,7 @@ export default async function Home() {
       params: {
         "filter[status]": 1,
         "fields[node--article]": "title,path,field_image,uid,created",
-        include: "field_image,uid",
+        include: "field_image, uid",
         sort: "-created",
       },
     }
