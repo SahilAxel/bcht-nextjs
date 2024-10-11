@@ -1,0 +1,238 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "MuseoSansBold", sans-serif;
+  margin: 0;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 42px;
+}
+@media (min-width: 1025px) {
+  h1 {
+    font-size: 3.25rem;
+    line-height: 64px;
+  }
+}
+
+h1.small {
+  font-size: 2.25rem;
+  line-height: 44px;
+}
+
+h2 {
+  font-size: 1.75rem;
+  line-height: 36px;
+}
+@media (min-width: 1025px) {
+  h2 {
+    font-size: 2rem;
+    line-height: 42px;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 32px;
+}
+@media (min-width: 1025px) {
+  h3 {
+    font-size: 1.75rem;
+    line-height: 36px;
+  }
+}
+
+h4 {
+  font-size: 1.25rem;
+  line-height: 32px;
+}
+@media (min-width: 1025px) {
+  h4 {
+    font-size: 1.5rem;
+    line-height: 32px;
+  }
+}
+
+h5 {
+  font-size: 1.125rem;
+  line-height: 24px;
+}
+@media (min-width: 1025px) {
+  h5 {
+    font-size: 1.25rem;
+    line-height: 26px;
+  }
+}
+
+h6 {
+  font-size: 1.125rem;
+  line-height: 24px;
+}
+
+h6.sub-heading {
+  font-size: 1rem;
+  line-height: 22px;
+}
+
+.paragraph--type--accordion {
+  padding: 0 18px;
+}
+@media (min-width: 1025px) {
+  .paragraph--type--accordion {
+    padding: 0;
+  }
+}
+.paragraph--type--accordion .paragraph--type--accordion-item {
+  border-bottom: 1px solid #c0c3d0;
+  padding-bottom: 16px;
+  margin-bottom: 32px;
+}
+@media (min-width: 1025px) {
+  .paragraph--type--accordion .paragraph--type--accordion-item {
+    padding-bottom: 8px;
+  }
+}
+.paragraph--type--accordion .paragraph--type--accordion-item.open .field--name-field-description {
+  height: auto;
+}
+.paragraph--type--accordion .paragraph--type--accordion-item.open .field--name-field-heading {
+  background-image: url("../../../../icons/icon_minus.svg");
+}
+.paragraph--type--accordion .field--name-field-accordion-items .field__item:last-child .paragraph--type--accordion-item {
+  margin-bottom: 0;
+}
+.paragraph--type--accordion .field--name-field-heading {
+  font-size: 1.25rem;
+  line-height: 30px;
+  font-weight: 700;
+  font-style: normal;
+  font-family: "HelveticaRegular", Arial, sans-serif;
+  padding-right: 60px;
+  padding-bottom: 16px;
+  display: block;
+  background: url("../../../../icons/icon_plus.svg") no-repeat;
+  background-position: calc(100% - 18px) 6px;
+  cursor: pointer;
+  color: #5a5e6f;
+  font-family: "HelveticaBold", Arial, sans-serif;
+  font-weight: normal;
+}
+@media (min-width: 1025px) {
+  .paragraph--type--accordion .field--name-field-heading {
+    font-size: 1.5rem;
+    line-height: 36px;
+  }
+}
+@media (min-width: 1025px) {
+  .paragraph--type--accordion .field--name-field-heading {
+    padding: 0 91px 24px 18px;
+  }
+}
+.paragraph--type--accordion .field--name-field-heading:hover {
+  color: #003087;
+}
+.paragraph--type--accordion .field--name-field-description {
+  height: 0;
+  overflow: hidden;
+}
+.paragraph--type--accordion .field--name-field-description p {
+  margin: 0;
+  padding-top: 0;
+}
+.paragraph--type--accordion .field--name-field-description p:last-child {
+  padding-bottom: 24px;
+}
+@media (min-width: 1025px) {
+  .paragraph--type--accordion .field--name-field-description {
+    padding-left: 18px;
+    padding-right: 91px;
+  }
+}
+.paragraph--type--accordion .field--name-field-description a {
+  font-family: "HelveticaBold", Arial, sans-serif;
+}
+.paragraph--type--accordion .field--name-field-description ol li,
+.paragraph--type--accordion .field--name-field-description ul li {
+  font-size: 1rem;
+  line-height: 24px;
+}
+@media (min-width: 1025px) {
+  .paragraph--type--accordion .field--name-field-description ol li,
+  .paragraph--type--accordion .field--name-field-description ul li {
+    font-size: 1.125rem;
+    line-height: 28px;
+  }
+}
+.paragraph--type--accordion .field--name-field-heading-text {
+  font-size: 1.5rem;
+  line-height: 32px;
+  font-family: "MuseoSansBold", sans-serif;
+  font-weight: normal;
+  padding-bottom: 24px;
+  color: #003087;
+  border-bottom: 3px solid #41b6e6;
+  margin-bottom: 32px;
+}
+@media (min-width: 1025px) {
+  .paragraph--type--accordion .field--name-field-heading-text {
+    font-size: 1.75rem;
+    line-height: 36px;
+  }
+}
+.paragraph--type--accordion .field--type-link a {
+  font-size: 1rem;
+  line-height: 22px;
+  padding-top: 32px;
+  font-family: "MuseoSansSemiBold", sans-serif;
+  font-weight: normal;
+  text-decoration: none;
+  display: -webkit-inline-box;
+  display: -ms-inline-flexbox;
+  display: inline-flex;
+}
+@media (min-width: 1025px) {
+  .paragraph--type--accordion .field--type-link a {
+    font-size: 1.25rem;
+    line-height: 26px;
+  }
+}
+.paragraph--type--accordion .field--type-link a::after {
+  content: "";
+  width: 18px;
+  background-image: url("../../../../icons/arrow_pink.svg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+  margin-left: 10px;
+}
+.paragraph--type--accordion .field--type-link a:hover, .paragraph--type--accordion .field--type-link a:focus {
+  color: #007dba;
+}
+.paragraph--type--accordion .field--type-link a:hover::after, .paragraph--type--accordion .field--type-link a:focus::after {
+  content: "";
+  background-image: url("../../../../icons/arrow_ocean.svg");
+}
+
+.accordion-trigger {
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  display: block;
+  width: 100%;
+  text-align: left;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-focus-ring-color: rgba(255, 255, 255, 0);
+}
+.accordion-trigger:hover {
+  background: transparent;
+}
+.accordion-trigger:hover .field--name-field-heading {
+  color: #003087;
+}
+/*# sourceMappingURL=../../../maps/components/accordion/accordion.css.map */

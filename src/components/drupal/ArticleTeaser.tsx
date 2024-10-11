@@ -3,13 +3,14 @@ import { Link } from "@/components/navigation/Link"
 import { absoluteUrl, formatDate } from "@/lib/utils"
 import type { DrupalNode } from "next-drupal"
 
+
 interface ArticleTeaserProps {
   node: DrupalNode
 }
 
 export function ArticleTeaser({ node, ...props }: ArticleTeaserProps) {
   return (
-    <article {...props}>
+    <article {...props} className="page-node-type-article">
       <Link href={node.path.alias} className="no-underline hover:text-blue-600">
         <h2 className="mb-4 text-4xl font-bold">{node.title}</h2>
       </Link>
@@ -22,7 +23,7 @@ export function ArticleTeaser({ node, ...props }: ArticleTeaserProps) {
         ) : null}
         <span> - {formatDate(node.created)}</span>
       </div>
-      {node.field_image && (
+      {/* {node.field_image && (
         <figure className="my-4">
           <Image
             src={absoluteUrl(node.field_image.uri.url)}
@@ -31,7 +32,7 @@ export function ArticleTeaser({ node, ...props }: ArticleTeaserProps) {
             alt={node.field_image.resourceIdObjMeta.alt}
           />
         </figure>
-      )}
+      )} */}
       <Link
         href={node.path.alias}
         className="inline-flex items-center px-6 py-2 border border-gray-600 rounded-full hover:bg-gray-100"

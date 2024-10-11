@@ -1,0 +1,161 @@
+@import '../../settings/settings.all';
+
+.paragraph--type--accordion {
+  padding: 0 18px;
+
+  @include breakpoint(small-desktop) {
+    padding: 0;
+  }
+
+  .paragraph--type--accordion-item {
+    border-bottom: 1px solid $BostonGrayTint;
+    padding-bottom: 16px;
+    margin-bottom: 32px;
+
+    @include breakpoint(small-desktop) {
+      padding-bottom: 8px;
+    }
+
+    &.open {
+      .field--name-field-description {
+        height: auto;
+      }
+
+      .field--name-field-heading {
+        background-image: url('../../../../icons/icon_minus.svg');
+      }
+    }
+  }
+
+  .field--name-field-accordion-items {
+    .field__item {
+      &:last-child {
+        .paragraph--type--accordion-item {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+  .field--name-field-heading {
+    @include p24(700);
+
+    padding-right: 60px;
+    padding-bottom: 16px;
+    display: block;
+    background: url('../../../../icons/icon_plus.svg') no-repeat;
+    background-position: calc(100% - 18px) 6px;
+    cursor: pointer;
+    color: $BostonGray;
+    font-family: $HelveticaBold;
+    font-weight: normal;
+    @include breakpoint(small-desktop) {
+      padding: 0 91px 24px 18px;
+    }
+
+    &:hover {
+      color: $BostonBlue;
+    }
+  }
+
+  .field--name-field-description {
+    height: 0;
+    overflow: hidden;
+
+    p {
+      margin: 0;
+      padding-top: 0;
+
+      &:last-child {
+        padding-bottom: 24px;
+      }
+    }
+
+    @include breakpoint(small-desktop) {
+      padding-left: 18px;
+      padding-right: 91px;
+    }
+
+    a {
+      font-family: $HelveticaBold;
+    }
+
+    ol,
+    ul {
+      li {
+        font-size: rem(16);
+        line-height: 24px;
+        @include breakpoint(small-desktop) {
+          font-size: rem(18);
+          line-height: 28px;
+        }
+      }
+    }
+  }
+
+  .field--name-field-heading-text {
+    @include t4;
+
+    font-family: $MuseoSansBold;
+    font-weight: normal;
+    padding-bottom: 24px;
+    color: $BostonBlue;
+    border-bottom: 3px solid $BostonSky;
+    margin-bottom: 32px;
+  }
+
+  .field--type-link {
+    a {
+      font-size: rem(16);
+      line-height: 22px;
+      padding-top: 32px;
+      font-family: $MuseoSansSemiBold;
+      font-weight: normal;
+      text-decoration: none;
+      display: inline-flex;
+
+      @include breakpoint(small-desktop) {
+        font-size: rem(20);
+        line-height: 26px;
+      }
+
+      &::after {
+        content: '';
+        width: 18px;
+        background-image: url('../../../../icons/arrow_pink.svg');
+        background-position: center;
+        background-repeat: no-repeat;
+        background-size: contain;
+        margin-left: 10px;
+      }
+
+      &:hover,
+      &:focus {
+        color: $BostonOcean;
+
+        &::after {
+          content: '';
+          background-image: url('../../../../icons/arrow_ocean.svg');
+        }
+      }
+    }
+  }
+}
+
+.accordion-trigger {
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: transparent;
+  display: block;
+  width: 100%;
+  text-align: left;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  -webkit-focus-ring-color: rgba(255, 255, 255, 0);
+  &:hover {
+    background: transparent;
+    .field--name-field-heading {
+      color: $BostonBlue;
+    }
+  }
+}

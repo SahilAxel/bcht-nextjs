@@ -1,0 +1,164 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "MuseoSansBold", sans-serif;
+  margin: 0;
+  font-weight: normal;
+}
+
+h1 {
+  font-size: 2rem;
+  line-height: 42px;
+}
+@media (min-width: 1025px) {
+  h1 {
+    font-size: 3.25rem;
+    line-height: 64px;
+  }
+}
+
+h1.small {
+  font-size: 2.25rem;
+  line-height: 44px;
+}
+
+h2 {
+  font-size: 1.75rem;
+  line-height: 36px;
+}
+@media (min-width: 1025px) {
+  h2 {
+    font-size: 2rem;
+    line-height: 42px;
+  }
+}
+
+h3 {
+  font-size: 1.5rem;
+  line-height: 32px;
+}
+@media (min-width: 1025px) {
+  h3 {
+    font-size: 1.75rem;
+    line-height: 36px;
+  }
+}
+
+h4 {
+  font-size: 1.25rem;
+  line-height: 32px;
+}
+@media (min-width: 1025px) {
+  h4 {
+    font-size: 1.5rem;
+    line-height: 32px;
+  }
+}
+
+h5 {
+  font-size: 1.125rem;
+  line-height: 24px;
+}
+@media (min-width: 1025px) {
+  h5 {
+    font-size: 1.25rem;
+    line-height: 26px;
+  }
+}
+
+h6 {
+  font-size: 1.125rem;
+  line-height: 24px;
+}
+
+h6.sub-heading {
+  font-size: 1rem;
+  line-height: 22px;
+}
+
+.paragraph--type--image-with-caption {
+  padding: 0px 18px;
+}
+@media (min-width: 1025px) {
+  .paragraph--type--image-with-caption {
+    padding: 0px;
+  }
+}
+.paragraph--type--image-with-caption img {
+  width: 100%;
+  height: auto;
+  border-radius: 6px 6px 0 0;
+}
+.paragraph--type--image-with-caption .caption-text-wrapper {
+  color: #5a5e6f;
+  font-family: "HelveticaRegular", Arial, sans-serif;
+  font-style: italic;
+  font-size: 0.75rem;
+  padding: 4px 0px 0px 0px;
+  line-height: 22px;
+  margin: 0px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  position: relative;
+}
+.paragraph--type--image-with-caption .caption-text-wrapper p {
+  padding: 0px;
+  margin: 0px;
+  font-size: 0.75rem;
+  line-height: 22px;
+}
+@media (min-width: 1025px) {
+  .paragraph--type--image-with-caption .caption-text-wrapper p {
+    font-size: 0.875rem;
+    line-height: 22px;
+  }
+}
+.paragraph--type--image-with-caption .caption-text-wrapper a {
+  font-family: "HelveticaBold", Arial, sans-serif;
+}
+@media (min-width: 1025px) {
+  .paragraph--type--image-with-caption .caption-text-wrapper {
+    font-size: 0.875rem;
+    line-height: 22px;
+    padding: 8px 0px 0px 0px;
+  }
+}
+.paragraph--type--image-with-caption .caption-text-wrapper::before {
+  content: "";
+  min-width: 3px;
+  width: 3px;
+  background-color: #007dba;
+  display: block;
+  margin-right: 10px;
+  position: absolute;
+  height: -webkit-fit-content;
+  height: -moz-fit-content;
+  height: fit-content;
+  min-height: 34px;
+  height: calc(100% - 6px);
+}
+@media (min-width: 1025px) {
+  .paragraph--type--image-with-caption .caption-text-wrapper::before {
+    height: calc(100% - 8px);
+  }
+}
+.paragraph--type--image-with-caption .caption-text-wrapper .caption-text-innerwrapper {
+  padding: 4px 0;
+  padding-left: 13px;
+}
+@media (min-width: 1025px) {
+  .paragraph--type--image-with-caption .caption-text-wrapper .caption-text-innerwrapper {
+    padding: 6px 0;
+    padding-left: 13px;
+  }
+}
+/*# sourceMappingURL=../../../maps/components/image-with-caption/image-with-caption.css.map */

@@ -3,7 +3,7 @@ import type { NextRequest } from "next/server"
 
 async function handler(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams
-  const path = searchParams.get("path")
+  const path = searchParams.get("slug")
   const secret = searchParams.get("secret")
 
   // Validate secret.

@@ -9,5 +9,18 @@ export const drupal = new NextDrupal(baseUrl, {
     clientId,
     clientSecret,
   },
-  // debug: true,
+  frontPage: "/home",
+  debug: true,
 })
+
+export function getFileUrl(relativePath: string) {
+  return `${baseUrl}${relativePath}`
+}
+
+export function getAbsoluteUrl(url: string) {
+  if (new URL(url, baseUrl).hostname == null) {
+    return baseUrl + url
+  }
+
+  return url
+}
