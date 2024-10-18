@@ -32,7 +32,6 @@ function HeroHomePage({ data, nodeTitle }: HeroHomePageProps) {
       data.field_image.field_media_image.links.home_banner_mobile.meta.height,
     src: data.field_image.field_media_image.links.home_banner_mobile.href,
   })
-  /* console.log(data) */
 
   return (
     <div className="paragraph--type--homepage-hero">

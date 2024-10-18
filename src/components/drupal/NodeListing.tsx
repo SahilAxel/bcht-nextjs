@@ -7,7 +7,6 @@ interface NodeListingProps {
 }
 
 function NodeListing({ node }: NodeListingProps) {
-  /* console.log(node) */
   return (
     <div
       className={`search-result-item ${node.field_hero.field_image ? "hasimage" : "noimage"}`}

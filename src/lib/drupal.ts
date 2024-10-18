@@ -10,7 +10,7 @@ export const drupal = new NextDrupal(baseUrl, {
     clientSecret,
   },
   frontPage: "/home",
-  debug: true,
+  // debug: true,
 })
 
 export function getFileUrl(relativePath: string) {

@@ -13,7 +13,6 @@ async function ImageBesideText({
   data,
   similarCompBelow = false,
 }: ImageBesideTextProps) {
-  /* console.log(data) */
   return (
     <div
       className={`paragraph--type--image-beside-text ${data.field_layout === "image_on_left" ? "image_on_left" : "image_on_right"} ${similarCompBelow ? "similar_component_type_below" : undefined}`}
@@ -47,14 +46,19 @@ async function ImageBesideText({
             </div>
             <div className="right_content_wrapper">
               {data.field_image ? (
-                <Image
-                  src={
-                    data.field_image.field_media_image.links.image_beside_text
-                      .href
-                  }
-                  {...data.field_image.field_media_image.resourceIdObjMeta}
-                  alt={data.field_image.field_media_image.resourceIdObjMeta.alt || ""}
-                />
+                <div className="image_content">
+                  <Image
+                    src={
+                      data.field_image.field_media_image.links.image_beside_text
+                        .href
+                    }
+                    {...data.field_image.field_media_image.resourceIdObjMeta}
+                    alt={
+                      data.field_image.field_media_image.resourceIdObjMeta
+                        .alt || ""
+                    }
+                  />
+                </div>
               ) : null}
             </div>
           </div>

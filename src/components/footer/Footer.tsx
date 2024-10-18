@@ -2,7 +2,8 @@ import Image from "next/image"
 import Link from "next/link"
 import "./footer.css"
 import { drupal } from "@/lib/drupal"
-import { Fragment } from "react"
+import { Fragment, useRef } from "react"
+import BackToTop from "@/components/ui/BackToTop"
 
 export default function Footer() {
   return (
@@ -18,6 +19,7 @@ export default function Footer() {
           <FooterBottom />
         </div>
       </div>
+      <BackToTop />
     </footer>
   )
 }

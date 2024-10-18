@@ -37,7 +37,7 @@ async function getNode(slug: string[]) {
 
   if (type === "node--article") {
     params.include =
-      "field_hero.field_image.field_media_image,field_components.field_image.field_media_image,field_components.field_icon.field_media_image"
+      "field_hero.field_image.field_media_image,field_components.field_image.field_media_image,field_components.field_icon.field_media_image,field_related_content.field_topics,field_call_to_action_cta_banner"
   }
 
   const resource = await drupal.getResource<DrupalNode>(type, uuid, {

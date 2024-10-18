@@ -1,9 +1,9 @@
 "use client"
 import { usePathname, useSearchParams, useRouter } from "next/navigation"
-import React, { useEffect } from "react"
+import React, { useEffect, useRef } from "react"
 
 interface PaginationProps {
-  totalItems: string
+  totalItems: number
   limit: number
 }
 
@@ -27,6 +27,10 @@ export default function Pagination({ totalItems, limit }: PaginationProps) {
     newParams.set("page", page.toString())
     replace(`${pathname}?${newParams.toString()}`, { scroll: false })
     const searchResultsElement = document.getElementById('searchResults');
+  }
+
+  if (totalItems <= limit) {
+    return null
   }
 
   return (

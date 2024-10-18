@@ -1,5 +1,5 @@
 import type { DrupalNode, DrupalParagraph } from "next-drupal"
-import { HeroInteriorPages } from "./paragraphs"
+import { CallToActionBanner, ArticleRelatedCard, HeroInteriorPages } from "@/components/drupal/paragraphs"
 import PageComponents from "./PageComponents"
 import Body from "@/components/misc/Body"
 import "./articlepage.css"
@@ -32,6 +32,14 @@ export function Article({ node, ...props }: ArticleProps) {
         )}
       </div>
       <PageComponents components={node.field_components} />
+      {node.field_related_content && (
+        <ArticleRelatedCard data={node.field_related_content as DrupalParagraph} />
+      )}
+      {node.field_call_to_action_cta_banner && (
+        <CallToActionBanner
+          data={node.field_call_to_action_cta_banner as DrupalParagraph}
+        />
+      )}
     </article>
   )
 }

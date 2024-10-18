@@ -9,6 +9,7 @@ import VideoEmbed from "@/components/drupal/paragraphs/VideoEmbed/VideoEmbed"
 import Testimonial from "@/components/drupal/paragraphs/Testimonial/Testimonial"
 import ImpactStats from "@/components/drupal/paragraphs/ImpactStats/ImpactStats"
 import FeaturedEventsListing from "@/components/drupal/paragraphs/FeaturedEventsListing/FeaturedEventsListing"
+import ArticleRelatedCard from "@/components/drupal/paragraphs/Card/ArticleRelatedCard"
 
 export {
   HeroInteriorPages,
@@ -18,6 +19,7 @@ export {
   CallToActionBanner,
   ImageWithCaption,
   Card,
+  ArticleRelatedCard,
   VideoEmbed,
   Testimonial,
   ImpactStats,

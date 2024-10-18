@@ -4,10 +4,11 @@ import { HeroInteriorPages } from "@/components/drupal/paragraphs"
 import { DrupalNode, DrupalParagraph, JsonApiResponse } from "next-drupal"
 import HeroHomePage from "@/components/drupal/paragraphs/HeroBanners/HeroHomePage"
 import Body from "@/components/misc/Body"
-import Search from "@/components/ui/Search"
+import SearchForm from "@/components/ui/SearchForm"
 import axios from "axios"
 import NodeListing from "@/components/drupal/NodeListing"
 import Pagination from "@/components/navigation/Pagination"
+import { Suspense } from "react"
 
 interface SearchParamProps {
   searchParams: {
@@ -17,7 +18,7 @@ interface SearchParamProps {
 }
 
 interface SearchResultsResponse extends JsonApiResponse {
-  total: string
+  total: number
   items: DrupalNode[]
 }
 
@@ -72,30 +73,76 @@ export default async function SearchPage({ searchParams }: SearchParamProps) {
         {!node.field_hero && <h1 className="nobanner_h1">{node.title}</h1>}
       </div>
       <div className="paragraph--type--blocks">
-        <Search />
-        <div className="search-result-page-wrapper"  id="searchResults">
-          <header>
-            Showing{" "}
-            {currentPage > 1
-              ? `${(currentPage - 1) * numberOfItemsToDisplay + 1}-${Math.min(
-                  Number(searchResults.total),
-                  currentPage * numberOfItemsToDisplay
-                )}`
-              : `1-${Math.min(Number(searchResults.total), numberOfItemsToDisplay)}`}{" "}
-            of {searchResults.total} results
-          </header>
-          {searchResults.items &&
-            searchResults.items.map((result) => (
-              <div key={result.id} className="views-row">
-                <NodeListing node={result} />
-              </div>
-            ))}
-          <Pagination
-            totalItems={searchResults.total}
-            limit={numberOfItemsToDisplay}
-          />
-        </div>
+        <Suspense fallback={"Loading"}>
+          <SearchForm />
+          <div className="search-result-page-wrapper" id="searchResults">
+            <header>
+              Showing{" "}
+              {searchResults.items.length > 0
+                ? currentPage > 1
+                  ? `${(currentPage - 1) * numberOfItemsToDisplay + 1}-${Math.min(
+                      Number(searchResults.total),
+                      currentPage * numberOfItemsToDisplay
+                    )}`
+                  : `1-${Math.min(Number(searchResults.total), numberOfItemsToDisplay)}`
+                : "0 - 0"}{" "}
+              of {searchResults.total} results
+            </header>
+            {query && searchResults.items.length > 0 ? (
+              searchResults.items.map((result) => (
+                <div key={result.id} className="views-row">
+                  <NodeListing node={result} />
+                </div>
+              ))
+            ) : (
+              <NoResultsMessage query={query} />
+            )}
+            <Pagination
+              totalItems={searchResults.total as number}
+              limit={numberOfItemsToDisplay}
+            />
+            <footer>
+              Showing{" "}
+              {searchResults.items.length > 0
+                ? currentPage > 1
+                  ? `${(currentPage - 1) * numberOfItemsToDisplay + 1}-${Math.min(
+                      Number(searchResults.total),
+                      currentPage * numberOfItemsToDisplay
+                    )}`
+                  : `1-${Math.min(Number(searchResults.total), numberOfItemsToDisplay)}`
+                : "0 - 0"}{" "}
+              of {searchResults.total} results
+            </footer>
+          </div>
+        </Suspense>
       </div>
     </article>
+  )
+}
+
+async function NoResultsMessage({ query }: { query: string }) {
+  const searchPageSettings = await drupal.getResourceCollection(
+    "site_setting_entity--search_page_no_results_settings"
+  )
+
+  return searchPageSettings.length > 0 ? (
+    searchPageSettings.map((item) => (
+      <div key={item.id} className="no_result_found_wraper">
+        <div className="headline">
+          {item.field_error_message_before} “
+          <span className="search-text">{query}</span>”{" "}
+          {item.field_error_message_after}
+        </div>
+        <div className="no-result-bottom-wrapper richtext">
+          <Body value={item.field_recommended_links?.processed} />
+        </div>
+      </div>
+    ))
+  ) : (
+    <div className="no_result_found_wraper">
+      <div className="headline">
+        No results found for “<span className="search-text">{query}</span>”
+      </div>
+    </div>
   )
 }

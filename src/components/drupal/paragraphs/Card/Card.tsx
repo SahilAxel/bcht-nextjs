@@ -10,7 +10,6 @@ interface CardProps {
 }
 
 function Card({ data }: CardProps) {
-  /* console.log(data) */
   return (
     <div className="paragraph--type--card cards_wrapper">
       <div className="component__wrapper cards_inner_wrapper">
@@ -101,7 +100,6 @@ interface ManualCardsProps {
 
 function ManualCards({ card_items }: ManualCardsProps) {
   const itemCount = card_items.length
-  /* console.log(card_items.field_image.field_media_image) */
   return (
     <div className={`cards_item_wrapper num_of_card_${itemCount}`}>
       {card_items.map((item) => (
