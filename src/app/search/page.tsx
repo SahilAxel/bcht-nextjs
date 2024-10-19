@@ -72,7 +72,7 @@ export default async function SearchPage({ searchParams }: SearchParamProps) {
       >
         {!node.field_hero && <h1 className="nobanner_h1">{node.title}</h1>}
       </div>
-      <div className="paragraph--type--blocks">
+      <div className="paragraph--type--blocks" id="results">
         <Suspense fallback={"Loading"}>
           <SearchForm />
           <div className="search-result-page-wrapper" id="searchResults">

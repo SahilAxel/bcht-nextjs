@@ -5,7 +5,6 @@ import {
   DrupalNode,
   DrupalParagraph,
   DrupalTaxonomyTerm,
-  JsonApiResponse,
 } from "next-drupal"
 import HeroHomePage from "@/components/drupal/paragraphs/HeroBanners/HeroHomePage"
 import Body from "@/components/misc/Body"
@@ -36,24 +35,6 @@ export default async function SearchPage({ searchParams }: SearchParamProps) {
     drupal.getResourceCollection<DrupalTaxonomyTerm[]>("taxonomy_term--topic"),
   ])
 
-  const articleType = searchParams?.type ?? "All"
-  const articleTopic = searchParams?.topic ?? "All"
-  const currentPage = searchParams?.page || 1
-  const numberOfItemsToDisplay = 10
-
-  const viewResults = await drupal.getView<DrupalNode[]>(
-    "articles_listing--block_1",
-    {
-      params: {
-        "page[number]": currentPage - 1,
-        "page[limit]": numberOfItemsToDisplay,
-        "views-filter[type]": articleType,
-        "views-filter[topic]": articleTopic,
-        include: "field_hero.field_image.field_media_image",
-      },
-    }
-  )
-
   return (
     <article>
       {node.field_hero &&
@@ -81,54 +62,79 @@ export default async function SearchPage({ searchParams }: SearchParamProps) {
           </div>
         )}
       </div>
-      <div className="paragraph--type--blocks">
-        <Suspense fallback={"Loading"}>
+      <div className="paragraph--type--blocks" id="results">
+        <Suspense>
           <ArticlesFilterForm
             typeOptions={articleTypeOptions}
             topicOptions={topicOptions}
           />
-          <div className="search-result-page-wrapper article-result-page-wrapper contextual-region">
-            <header>
-              Showing{" "}
-              {viewResults.results.length > 0
-                ? currentPage > 1
-                  ? `${(currentPage - 1) * numberOfItemsToDisplay + 1}-${Math.min(
-                      Number(viewResults.meta.count),
-                      currentPage * numberOfItemsToDisplay
-                    )}`
-                  : `1-${Math.min(Number(viewResults.meta.count), numberOfItemsToDisplay)}`
-                : "0 - 0"}{" "}
-              of {viewResults.meta.count} results
-            </header>
-            {viewResults.results.length > 0 ? (
-              viewResults.results.map((result: DrupalNode) => (
-                <div key={result.id} className="views-row">
-                  <NodeListing node={result} />
-                </div>
-              ))
-            ) : (
-              <NoResultsMessage />
-            )}
-            <footer>
-              Showing{" "}
-              {viewResults.results.length > 0
-                ? currentPage > 1
-                  ? `${(currentPage - 1) * numberOfItemsToDisplay + 1}-${Math.min(
-                      Number(viewResults.meta.count),
-                      currentPage * numberOfItemsToDisplay
-                    )}`
-                  : `1-${Math.min(Number(viewResults.meta.count), numberOfItemsToDisplay)}`
-                : "0 - 0"}{" "}
-              of {viewResults.meta.count} results
-            </footer>
-            <Pagination
-              totalItems={viewResults.meta.count}
-              limit={numberOfItemsToDisplay}
-            />
-          </div>
+        </Suspense>
+        <Suspense fallback={<p>Loading</p>}>
+          <ArticlesGrid searchParams={searchParams} />
         </Suspense>
       </div>
     </article>
+  )
+}
+
+async function ArticlesGrid({ searchParams }: SearchParamProps) {
+  const articleType = searchParams?.type ?? "All"
+  const articleTopic = searchParams?.topic ?? "All"
+  const currentPage = searchParams?.page || 1
+  const numberOfItemsToDisplay = 10
+
+  const viewResults = await drupal.getView<DrupalNode[]>(
+    "articles_listing--block_1",
+    {
+      params: {
+        "page[number]": currentPage - 1,
+        "page[limit]": numberOfItemsToDisplay,
+        "views-filter[type]": articleType,
+        "views-filter[topic]": articleTopic,
+        include: "field_hero.field_image.field_media_image",
+      },
+    }
+  )
+  return (
+    <div className="search-result-page-wrapper article-result-page-wrapper contextual-region">
+      <header>
+        Showing{" "}
+        {viewResults.results.length > 0
+          ? currentPage > 1
+            ? `${(currentPage - 1) * numberOfItemsToDisplay + 1}-${Math.min(
+                Number(viewResults.meta.count),
+                currentPage * numberOfItemsToDisplay
+              )}`
+            : `1-${Math.min(Number(viewResults.meta.count), numberOfItemsToDisplay)}`
+          : "0 - 0"}{" "}
+        of {viewResults.meta.count} results
+      </header>
+      {viewResults.results.length > 0 ? (
+        viewResults.results.map((result: DrupalNode) => (
+          <div key={result.id} className="views-row">
+            <NodeListing node={result} />
+          </div>
+        ))
+      ) : (
+        <NoResultsMessage />
+      )}
+      <footer>
+        Showing{" "}
+        {viewResults.results.length > 0
+          ? currentPage > 1
+            ? `${(currentPage - 1) * numberOfItemsToDisplay + 1}-${Math.min(
+                Number(viewResults.meta.count),
+                currentPage * numberOfItemsToDisplay
+              )}`
+            : `1-${Math.min(Number(viewResults.meta.count), numberOfItemsToDisplay)}`
+          : "0 - 0"}{" "}
+        of {viewResults.meta.count} results
+      </footer>
+      <Pagination
+        totalItems={viewResults.meta.count}
+        limit={numberOfItemsToDisplay}
+      />
+    </div>
   )
 }
 

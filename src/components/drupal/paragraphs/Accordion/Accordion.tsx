@@ -2,6 +2,7 @@
 import { DrupalParagraph } from "next-drupal"
 import "./accordion.css"
 import Link from "next/link"
+import Body from "@/components/misc/Body"
 
 interface AccordionProps {
   data: DrupalParagraph
@@ -75,10 +76,9 @@ function AccordionItems({ items }: AccordionItemProps) {
             <div className="accordion-description" aria-hidden="true">
               <div
                 className="field--name-field-description"
-                dangerouslySetInnerHTML={{
-                  __html: item.field_description.processed,
-                }}
-              ></div>
+              >
+                <Body value={item.field_description.processed} />
+              </div>
             </div>
           </div>
         </div>

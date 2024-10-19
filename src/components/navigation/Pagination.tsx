@@ -16,7 +16,7 @@ export default function Pagination({ totalItems, limit }: PaginationProps) {
   const totalPages = Math.ceil(Number(totalItems) / limit)
 
   useEffect(() => {
-    const searchResultsElement = document.getElementById('searchResults');
+    const searchResultsElement = document.getElementById('results');
     if (searchResultsElement) {
       searchResultsElement.scrollIntoView({ behavior: 'smooth' });
     }
@@ -25,7 +25,7 @@ export default function Pagination({ totalItems, limit }: PaginationProps) {
   function updatePage(page: number) {
     const newParams = new URLSearchParams(searchParams)
     newParams.set("page", page.toString())
-    replace(`${pathname}?${newParams.toString()}`, { scroll: false })
+    replace(`${pathname}?${newParams.toString()}`, { scroll: true })
     const searchResultsElement = document.getElementById('searchResults');
   }
 

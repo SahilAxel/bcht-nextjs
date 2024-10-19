@@ -11,7 +11,6 @@ import { Event } from "@/components/drupal/Event"
 
 async function getNode(slug: string[]) {
   const path = `/${slug.join("/")}`
-
   const params: JsonApiParams = {}
 
   const draftData = getDraftData()

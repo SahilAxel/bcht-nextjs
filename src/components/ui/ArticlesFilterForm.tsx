@@ -1,9 +1,6 @@
 "use client"
 
-import React, {
-  useEffect,
-  useState,
-} from "react"
+import React, { useEffect, useRef, useState } from "react"
 import { usePathname, useRouter, useSearchParams } from "next/navigation"
 import { DrupalTaxonomyTerm } from "next-drupal"
 import "@/styles/article-listing-filter.css"
@@ -61,6 +58,7 @@ export default function ArticlesFilterForm({
         setActiveTopic(target.value)
         params.set("topic", target.value)
       }
+
       target.closest(".fieldset-wrapper")?.classList.remove("active")
       const radios = target.closest(".form-radios")! as HTMLElement
       radios.style.display = "none"
@@ -148,19 +146,23 @@ function FilterFieldGroup({
   handleRadioChange,
   options,
 }: FilterFieldGropProps) {
+  const fieldsetWrapperRef = useRef<HTMLDivElement>(null)
   let activeLabel = "All"
-  if (document) {
-    activeLabel = document.querySelector<HTMLInputElement>(
-      `input[value="${activeValue}"]`
-    )?.labels![0].textContent as string
-  }
+
+  activeLabel = fieldsetWrapperRef.current?.querySelector<HTMLInputElement>(
+    `input[value="${activeValue}"]`
+  )?.labels![0].textContent as string
 
   return (
     <fieldset className="fieldgroup">
       <legend>
         <span className="fieldset-legend">{legend}</span>
       </legend>
-      <div className="fieldset-wrapper" onClick={(e) => handleSelect(e)}>
+      <div
+        className="fieldset-wrapper"
+        ref={fieldsetWrapperRef}
+        onClick={(e) => handleSelect(e)}
+      >
         <div id={`edit-${fieldName}`}>
           <span
             className="selected selected-type"
